@@ -1,0 +1,181 @@
+//Q1. Write a function that takes two integers and returns the larger of the two.
+
+fun main() {
+    var num1 = 20
+    var num2 = 30
+    var large = larger(num1,num2)
+    println("Larger of $num1 and $num2 is $large")
+}
+
+fun larger(a: Int , b: Int): Int{
+    if(a > b){
+        return a
+    }
+    else if(b > a){
+        return b
+    }
+    else{
+        println("Numbers are equal")
+        return 0
+    }
+}
+
+//Q2. Write a function sumOfList that takes a list of integers and returns the sum of all elements.
+
+fun main(){
+    sumOfList(9,8,7,6,5,4,3,2,1)
+}
+
+fun sumOfList(vararg num: Int){
+    var sum = 0
+    for(n in num){
+        sum += n
+    }
+    print("Sum of the given list is : $sum")
+}
+
+
+//Q3. Implement a function named isPalindrome that checks whether a given string is a palindrome (reads the same backward as forward).
+
+fun main() {
+    isPalindrome("MADAM")
+    isPalindrome("RACECAR")
+}
+fun isPalindrome(str: String){
+    var s = ""
+    for ( i in str.length - 1 downTo 0){
+        s = s + str[i]
+    }
+    if(s == str){
+    	println("$str is Palindrome")
+    }
+    else{
+        println("$str is not Palindrome")
+    }
+}
+
+
+//Q4. Create a function factorial that takes an integer n and returns the factorial of n using recursion.
+
+fun main() {
+    println(factorial(6))
+}
+fun factorial(num : Int): Int {
+    if(num > 0){
+        println(num)
+    	return (num) * factorial(num - 1 )
+	}
+    return 1
+} 
+
+
+//1. Define a BankAccount class with properties accountNumber and balance. Implement methods deposit and withdraw to modify the balance, and getBalance to return the current balance.
+fun main() {
+    val b1 = BankAccount(2024,50000.0)    
+    b1.deposit(10000.0)
+    b1.withdraw(5000.0)
+    b1.deposit(45000.0)
+    b1.getBalance()
+}
+class BankAccount( accountNumber : Int, balance : Double){   
+    val accountNumber : Int = accountNumber 
+    var  balance : Double =  balance 
+    init{
+        println("New Bank Account Created")
+    }
+    fun deposit(amount : Double){
+        balance += amount
+        println("New balance of $accountNumber after deposit of $amount is : Rs. $balance")
+    }
+    fun withdraw(amount : Double){
+        balance -= amount
+        println("New balance of $accountNumber after withdrawl of $amount is : Rs. $balance")
+    }
+    fun getBalance(){
+        println("Balance of Account number $accountNumber is Rs. $balance")
+    }
+}
+
+/*    OUTPUT
+New Bank Account Created
+New balance of 2024 after deposit of 10000.0 is : Rs. 60000.0
+New balance of 2024 after withdrawl of 5000.0 is : Rs. 55000.0
+New balance of 2024 after deposit of 45000.0 is : Rs. 100000.0
+Balance of Account number 2024 is Rs. 100000.0
+*/
+
+//2. Inheritance and Polymorphism: 
+//Create an abstract class Shape with an abstract method area. 
+//Create two subclasses Rectangle and Circle that implement the area method. 
+//Add another method perimeter in both subclasses and demonstrate polymorphism.
+
+fun main() {
+    val r = Rectangle(5.0, 4.0)
+    var r_area = r.area()
+    var r_per = r.perimeter()
+    println("Area of the rectangle is $r_area")
+    println("Perimeter of the rectangle is $r_per")
+    val c = Circle(7.0)
+    var c_area = c.area()
+    var c_per = c.perimeter()
+    println("Area of the rectangle is $c_area")
+    println("Perimeter of the circle is $c_per")
+}
+
+abstract class Shape {
+    abstract fun area(): Double
+}
+
+class Rectangle(val a: Double, val b: Double) : Shape() {
+    override fun area(): Double {
+        return a * b
+    }
+    fun perimeter(): Double{
+        return 2 * (a + b)
+    }
+}
+class Circle(val r: Double) : Shape() {
+    override fun area(): Double {
+        return 3.14 * r * r
+    }
+    fun perimeter(): Double{
+        return 2 * 3.14 * r
+    }
+}
+
+/*   OUTPUT
+Area of the rectangle is 20.0
+Perimeter of the rectangle is 18.0
+Area of the rectangle is 153.86
+Perimeter of the circle is 43.96
+*/
+
+//3. Interface Implementation:
+//Create an interface Drawable with a method drawInfo. Implement this interface in two classes Square and Triangle and print the info about the shapes.
+
+interface Drawable{
+    fun drawInfo()
+}
+
+class Square(var length : Int) : Drawable{
+    override fun drawInfo(){
+        println("This is a square with length $length")
+    }
+}
+class Triangle(var length : Int, var height : Int) : Drawable{
+    override fun drawInfo(){
+        println("This is a triangle with length $length and height $height")
+    }
+}
+fun main(){
+    val s= Square(5)
+    s.drawInfo()
+    val t = Triangle(3,4)
+    t.drawInfo()
+    
+}
+
+/*    OUTPUT
+This is a square with length 5
+This is a triangle with length 3 and height 4
+*/
